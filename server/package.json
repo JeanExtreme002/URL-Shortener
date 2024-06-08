@@ -2,8 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Back-end application",
-  "main": "index.js",
+  "main": "build/src/index.js",
   "scripts": {
+    "start": "node build/src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "gts lint",
     "clean": "gts clean",
@@ -28,12 +29,11 @@
   },
   "homepage": "https://github.com/JeanExtreme002/URL-Shortener#readme",
   "dependencies": {
-    "express": "^4.19.2",
-    "gts": "^5.3.0"
+    "express": "^4.19.2"
   },
   "devDependencies": {
+    "@types/node": "20.11.5",
     "gts": "^5.3.0",
-    "typescript": "~5.4.3",
-    "@types/node": "20.11.5"
+    "typescript": "~5.4.3"
   }
 }
