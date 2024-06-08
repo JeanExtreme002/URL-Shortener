@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Back-end application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm.cmd run compile",
+    "pretest": "npm.cmd run compile",
+    "posttest": "npm.cmd run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeanExtreme002/URL-Shortener.git"
+  },
+  "keywords": [
+    "url",
+    "shortener"
+  ],
+  "author": "Jean Loui Bernard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JeanExtreme002/URL-Shortener/issues"
+  },
+  "homepage": "https://github.com/JeanExtreme002/URL-Shortener#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "gts": "^5.3.0"
+  },
+  "devDependencies": {
+    "gts": "^5.3.0",
+    "typescript": "~5.4.3",
+    "@types/node": "20.11.5"
+  }
+}
