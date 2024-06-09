@@ -1,6 +1,7 @@
 import {Dialect, Sequelize} from 'sequelize';
-import URL from './url';
 import config from '../config';
+
+import './url';
 
 const session: Sequelize = new Sequelize({
     dialect: config.database.driver as Dialect,
@@ -11,17 +12,20 @@ const session: Sequelize = new Sequelize({
     password: config.database.password,
 });
 
-// Test connection.
-session
-    .authenticate()
-    .then(() => {
-        console.log('Connection established successfully.');
-    })
-    .catch(error => {
-        console.error('Could not connect to the database', error);
-    });
+/**
+ * Authenticate and sync the models.
+ */
+async function initialize(callback: (value: void) => void, sync = false) {
+    await session.authenticate();
 
-// Sync table.
-URL.sync({alter: true});
+    console.info('Connection to the database established successfully.');
 
-export default session;
+    if (sync) {
+        await session.sync({alter: true});
+        console.info('Synchronized database');
+    }
+
+    callback();
+}
+
+export {initialize, session};

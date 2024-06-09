@@ -1,4 +1,4 @@
-import URL from './url';
+import URLModel from './url';
 
 // Define the characters for the ID of a shortened URL.
 const upperCaseLetters: Array<string> = [...Array(26)].map((_, i) =>
@@ -10,9 +10,9 @@ const lowerCaseLetters: Array<string> = [...Array(26)].map((_, i) =>
 const numbers: Array<string> = [...Array(10)].map((_, i) => i.toString());
 
 const alphabet: Array<string> = Array.prototype.concat(
+    numbers,
     upperCaseLetters,
-    lowerCaseLetters,
-    numbers
+    lowerCaseLetters
 );
 
 // Create a JSON for querying the index of a character at the alphabet.
@@ -23,16 +23,17 @@ for (let index = 0; index < alphabet.length; index++) {
 }
 
 class Shortener {
-    public constructor() {}
-
     private intToString(id: number): string {
-        const divisor = alphabet.length;
         let stringId = '';
+        let hasValue = false;
 
-        while (id > 1) {
-            stringId = alphabet[id % divisor] + stringId;
-            id = Math.trunc(id / divisor);
-        }
+        do {
+            hasValue = id >= alphabet.length;
+
+            stringId = alphabet[id % alphabet.length] + stringId;
+            id = Math.trunc(id / alphabet.length);
+        } while (hasValue);
+
         return stringId;
     }
 
@@ -41,22 +42,24 @@ class Shortener {
 
         for (let index = 0; index < id.length; index++) {
             const value = alphabetDictionary[id[index]];
-            intId += Math.pow(alphabet.length, id.length - index - 1) * value;
+            intId += Math.pow(alphabet.length, id.length - 1 - index) * value;
         }
         return intId;
     }
 
     async insert(url: string): Promise<string> {
-        const reg: URL = URL.build({url: url});
+        const reg: URLModel = URLModel.build({url: url});
         await reg.save();
 
-        return this.intToString(reg.id);
+        return this.intToString(reg.id - 1);
     }
 
     async get(id: string): Promise<string | null> {
-        const intId = this.stringToInt(id);
+        const intId = this.stringToInt(id) + 1;
 
-        const reg: URL | null = await URL.findOne({where: {id: intId}});
+        const reg: URLModel | null = await URLModel.findOne({
+            where: {id: intId},
+        });
         return reg ? reg.url : null;
     }
 }

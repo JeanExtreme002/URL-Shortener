@@ -1,14 +1,14 @@
 import {DataTypes, Model, Sequelize} from 'sequelize';
-import session from './session';
+import {session} from './session';
 
-class URL extends Model {
-    public id!: number;
-    public url!: string;
+class URLModel extends Model {
+    declare id: number;
+    declare url: string;
 
-    public readonly updatedAt!: Date;
+    declare updatedAt: Date;
 }
 
-URL.init(
+URLModel.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -33,4 +33,4 @@ URL.init(
     }
 );
 
-export default URL;
+export default URLModel;
