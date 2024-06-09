@@ -1,36 +1,48 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import RedirectComponent from './RedirectComponent';
+import Alert from '@mui/material/Alert';
+import Fade from "@mui/material/Fade";
+import { useState } from 'react';
 
 import Button from './Button';
 import Entry from './Entry';
 
 import './App.css';
 
-function AppComponent() {
+function App(props) {
+  const [endAlert, setAlert] = useState(false);
+  const exitAlertTimeout = 1000;
+
+  if (props.urlNotFoundError) {
+    setTimeout(() => {
+      setAlert(true);
+
+      setTimeout(() => {
+        document.getElementById("notFoundAlert").hidden = true;
+      }, exitAlertTimeout + 1000);
+    }, 5000);
+  }
+
   return (
     <div className="App">
+      {
+        props.urlNotFoundError &&
+        <div id="notFoundAlert">
+          <Fade timeout={{enter: 0, exit: exitAlertTimeout}} in={!endAlert}>
+            <Alert severity="error">Shortened URL was not found.</Alert>
+          </Fade>
+        </div>
+      }
+      <div id="alertBox" hidden><Alert id="alert" severity="error">Something went wrong... Please, try again.</Alert></div>
+
       <header className="App-header">
-        <img src="./logo.png" className="App-logo" alt="logo" />
+        <img src="./logo.png" className="App-logo" alt="logo"/>
         <p>Shorten your lengthy URL into a compact and convenient link here :3</p>
       </header>
     
-      <Entry id="url-entry"/>
+      <Entry entryId="url-entry"/>
       <br/>
       <Button entryId="url-entry"/>
     </div>
   )
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" exact element={<AppComponent/>}/>
-        <Route path="/s/:id" element={<RedirectComponent/>}/>
-      </Routes>
-    </BrowserRouter>
-  );
 }
 
 export default App;

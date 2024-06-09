@@ -1,4 +1,3 @@
-// RedirectComponent.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -13,13 +12,13 @@ function RedirectComponent() {
             window.location.href = body.url;
         })
     }).catch(() => {
-        window.location.href = "/";
+        window.location.href = "/error";
     });
   }, [id]);
 
   return (
-    <div>
-      Redirecionando...
+    <div style={{margin: "1vh"}}>
+      Redirecting ...
     </div>
   );
 };

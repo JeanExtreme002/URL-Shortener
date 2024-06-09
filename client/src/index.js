@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import App from './components/App';
+import Redirect from './components/Redirect';
 import reportWebVitals from './reportWebVitals';
+
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/error" exact element={<App urlNotFoundError={true}/>}/>
+        <Route path="/s/:id" element={<Redirect/>}/>
+        <Route path="*" exact element={<App/>}/>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
