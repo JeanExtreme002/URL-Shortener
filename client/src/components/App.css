@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+}
+
+.App-header {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-header img {
+  height: 30vh;
+  margin-top: 2vh;
+  margin-bottom: 7vh;
+}
+
+.App-header p {
+  color: #61dafb;
+}
+
+.App-logo {
+  color: rgb(37, 150, 190);
+  animation: App-logo 4.0s linear infinite;
+}
+
+@keyframes App-logo {
+  to { transform: rotate(360deg); }
+}

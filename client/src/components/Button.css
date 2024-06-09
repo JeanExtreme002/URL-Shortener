@@ -1,0 +1,26 @@
+.Button {
+  width: 20vw;
+  height: 10vh;
+  font-size: calc(10vh * 0.4);
+  border-radius: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s;
+  margin-top: 3vh;;
+
+  &:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    background-color: #004494;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

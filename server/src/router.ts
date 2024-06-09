@@ -23,6 +23,7 @@ router.get('/:id', (req: Request, res: Response) => {
 });
 
 router.post('/shorten', (req: Request, res: Response) => {
+    console.log(req.body);
     shortener
         .insert(req.body.url)
         .then((id: string) => {

@@ -1,0 +1,15 @@
+.Entry {
+  min-width: 40vw;
+  height: 5vh;
+  font-size: calc(10vh * 0.3);
+  border-radius: 15px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    border-color: #007BFF;
+  }
+}
