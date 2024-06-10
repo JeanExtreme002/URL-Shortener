@@ -16,3 +16,10 @@ Read the documentation of [client](./client) and [server](./server) directories.
 - JavaScript
 - React
 - Mui
+
+## Running client and server concurrently
+Run the following commands:
+```
+npm install --save-dev
+npm run dev
+```
