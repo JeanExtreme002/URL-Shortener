@@ -54,6 +54,9 @@ class Shortener {
 
         // Return the ID of the existing row.
         if (existingInstance) {
+            existingInstance.updatedAt = new Date();
+            existingInstance.save();
+            
             return this.intToString(existingInstance.id - 1);
         }
 
