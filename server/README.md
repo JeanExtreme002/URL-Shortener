@@ -6,6 +6,8 @@ Run the following commands to start the application:
 ```
 npm install --save-dev
 
+npm run compile
+
 npm run dev
 ```
 
