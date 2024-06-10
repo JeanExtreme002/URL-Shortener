@@ -1,6 +1,6 @@
 # Getting Started
 
-This project was written with Express.js.
+This project was written with [Express.js](https://expressjs.com/).
 
 Configure the `.env` file (use the [`.env.sample`](./.env.sample)) and run the following commands to start the application:
 ```
