@@ -8,30 +8,15 @@ router.get('/', (req: Request, res: Response) => {
 });
 
 router.get('/:id', (req: Request, res: Response) => {
-    shortener
-        .get(req.params.id)
-        .then((url: string | null) => {
-            if (url) {
-                res.json({url: url});
-            } else {
-                res.sendStatus(404);
-            }
-        })
-        .catch(() => {
-            res.sendStatus(404);
-        });
+    shortener.get(req.params.id, res).catch(() => {
+        res.sendStatus(400);
+    });
 });
 
 router.post('/shorten', (req: Request, res: Response) => {
-    console.log(req.body);
-    shortener
-        .insert(req.body.url)
-        .then((id: string) => {
-            res.json({id: id});
-        })
-        .catch(() => {
-            res.sendStatus(400);
-        });
+    shortener.insert(req.body.url, res).catch(() => {
+        res.sendStatus(400);
+    });
 });
 
 export default router;

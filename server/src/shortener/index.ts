@@ -1,3 +1,4 @@
+import {Response} from 'express';
 import URLModel from './url';
 
 // Define the characters for the ID of a shortened URL.
@@ -47,33 +48,53 @@ class Shortener {
         return intId;
     }
 
-    async insert(url: string): Promise<string> {
-        const existingInstance: URLModel | null = await URLModel.findOne({
-            where: {url: url},
-        });
+    async insert(url: string, res: Response): Promise<void> {
+        const [instance, mustCreate]: [URLModel, boolean] =
+            await URLModel.findOrBuild({
+                where: {url: url},
+                defaults: {url: url},
+            });
+        instance.visitedAt = new Date();
 
-        // Return the ID of the existing row.
-        if (existingInstance) {
-            existingInstance.updatedAt = new Date();
-            existingInstance.save();
-            
-            return this.intToString(existingInstance.id - 1);
+        const promise: Promise<URLModel> = instance.save();
+
+        // Return the ID of the instance.
+        if (!mustCreate) {
+            const id: string = this.intToString(instance.id - 1);
+            res.json({id: id});
+
+            // Return the ID of the instance after saving it, if it does not exist.
+        } else {
+            promise
+                .then(() => {
+                    const id: string = this.intToString(instance.id - 1);
+                    res.json({id: id});
+                })
+                .catch(() => {
+                    res.sendStatus(500);
+                });
         }
-
-        // Insert a new URL to the database.
-        const instance: URLModel = URLModel.build({url: url});
-        await instance.save();
-
-        return this.intToString(instance.id - 1);
     }
 
-    async get(id: string): Promise<string | null> {
+    async get(id: string, res: Response): Promise<void> {
         const intId = this.stringToInt(id) + 1;
 
-        const instance: URLModel | null = await URLModel.findOne({
-            where: {id: intId},
-        });
-        return instance ? instance.url : null;
+        // Try getting the original URL by the ID.
+        URLModel.findOne({where: {id: intId}})
+            .then((instance: URLModel | null) => {
+                if (instance) {
+                    res.json({url: instance.url});
+
+                    // Update the last time the URL was visited.
+                    instance.visitedAt = new Date();
+                    instance.save();
+                } else {
+                    res.sendStatus(404);
+                }
+            })
+            .catch(() => {
+                res.sendStatus(500);
+            });
     }
 }
 

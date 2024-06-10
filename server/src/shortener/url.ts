@@ -5,7 +5,7 @@ class URLModel extends Model {
     declare id: number;
     declare url: string;
 
-    declare updatedAt: Date;
+    declare visitedAt: Date;
 }
 
 URLModel.init(
@@ -21,7 +21,7 @@ URLModel.init(
             unique: true,
             validate: {len: [3, 200]},
         },
-        updatedAt: {
+        visitedAt: {
             type: DataTypes.DATE,
             allowNull: false,
             defaultValue: Sequelize.fn('NOW'),
