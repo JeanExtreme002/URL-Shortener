@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Getting Started
 
 This project was written with Express.js.
 
