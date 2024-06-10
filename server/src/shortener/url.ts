@@ -1,5 +1,4 @@
-import {DataTypes, Model, Sequelize} from 'sequelize';
-import {session} from './session';
+import {DataTypes, Model, ModelAttributes, Sequelize} from 'sequelize';
 
 class URLModel extends Model {
     declare id: number;
@@ -8,31 +7,23 @@ class URLModel extends Model {
     declare visitedAt: Date;
 }
 
-URLModel.init(
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        url: {
-            type: DataTypes.STRING(200),
-            allowNull: false,
-            unique: true,
-            validate: {len: [3, 200]},
-        },
-        visitedAt: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.fn('NOW'),
-        },
+const UrlModelAttributes: ModelAttributes = {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
     },
-    {
-        tableName: 'URLS',
-        timestamps: false,
-        sequelize: session,
-        paranoid: true,
-    }
-);
+    url: {
+        type: DataTypes.STRING(200),
+        allowNull: false,
+        unique: true,
+        validate: {len: [3, 200]},
+    },
+    visitedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+    },
+};
 
-export default URLModel;
+export {URLModel, UrlModelAttributes};

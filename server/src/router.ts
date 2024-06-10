@@ -1,22 +1,29 @@
 import {Router, Request, Response} from 'express';
 import shortener from './shortener';
 
-const router = Router();
+function index(req: Request, res: Response) {
+    res.sendStatus(200);
+}
 
-router.get('/', (req: Request, res: Response) => {
-    res.json({message: 'OK'});
-});
-
-router.get('/:id', (req: Request, res: Response) => {
+function recoverUrl(req: Request, res: Response) {
+    console.log('>>>>>>', req.params);
     shortener.get(req.params.id, res).catch(() => {
         res.sendStatus(400);
     });
-});
+}
 
-router.post('/shorten', (req: Request, res: Response) => {
+function shortenUrl(req: Request, res: Response) {
+    console.log('>>>>>>', req.body);
     shortener.insert(req.body.url, res).catch(() => {
         res.sendStatus(400);
     });
-});
+}
 
-export default router;
+// Define paths.
+const router = Router();
+
+router.get('/', index);
+router.get('/:id', recoverUrl);
+router.post('/shorten', shortenUrl);
+
+export {router, index, recoverUrl, shortenUrl};

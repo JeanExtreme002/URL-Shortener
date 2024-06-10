@@ -1,5 +1,5 @@
 import {Response} from 'express';
-import URLModel from './url';
+import {URLModel} from './url';
 
 // Define the characters for the ID of a shortened URL.
 const upperCaseLetters: Array<string> = [...Array(26)].map((_, i) =>
@@ -70,7 +70,8 @@ class Shortener {
                     const id: string = this.intToString(instance.id - 1);
                     res.json({id: id});
                 })
-                .catch(() => {
+                .catch(error => {
+                    console.log('$$$$$$$$$$', error);
                     res.sendStatus(500);
                 });
         }

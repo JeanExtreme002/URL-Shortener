@@ -1,19 +1,7 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-
+import app from './app';
 import config from './config';
-import router from './router';
-import {initialize} from './shortener/session';
 
-const app = express();
-app.use(cors());
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-
-app.use(express.json());
-app.use(router);
+import {initialize, session} from './shortener/session';
 
 function main() {
     app.listen(config.server.port, () =>
@@ -21,4 +9,4 @@ function main() {
     );
 }
 
-initialize(main, config.devMode);
+initialize(session, main, config.devMode);

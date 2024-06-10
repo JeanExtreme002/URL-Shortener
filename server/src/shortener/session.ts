@@ -1,7 +1,7 @@
 import {Dialect, Sequelize} from 'sequelize';
 import config from '../config';
 
-import './url';
+import {URLModel, UrlModelAttributes} from './url';
 
 const session: Sequelize = new Sequelize({
     dialect: config.database.driver as Dialect,
@@ -16,8 +16,18 @@ const session: Sequelize = new Sequelize({
 /**
  * Authenticate and sync the models.
  */
-async function initialize(callback: (value: void) => void, sync = false) {
+async function initialize(
+    session: Sequelize,
+    callback: (value: void) => void,
+    sync = false
+) {
     await session.authenticate();
+
+    URLModel.init(UrlModelAttributes, {
+        tableName: 'URLS',
+        timestamps: false,
+        sequelize: session,
+    });
 
     console.info('Connection to the database established successfully.');
 
