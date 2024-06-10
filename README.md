@@ -11,6 +11,7 @@ Read the documentation of [client](./client) and [server](./server) directories.
 - Sequelize.js
 - MySQL (optional - you may use other database)
 - Google's TypeScript Style (GTS)
+- Jest and Supertest
 
 **Front-end:**
 - JavaScript
