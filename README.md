@@ -9,7 +9,7 @@ Read the documentation of [client](./client) and [server](./server) directories.
 - TypeScript
 - Express.js
 - Sequelize.js
-- MySQL (optional - you may use another database)
+- MySQL (optional - you may use other database)
 - Google's TypeScript Style (GTS)
 
 **Front-end:**
