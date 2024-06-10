@@ -21,5 +21,6 @@ Read the documentation of [client](./client) and [server](./server) directories.
 Run the following commands:
 ```
 npm install --save-dev
+
 npm run dev
 ```

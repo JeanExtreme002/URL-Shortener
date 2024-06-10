@@ -1,5 +1,5 @@
 {
-    "name": "URL-Shortener",
+    "name": "url-shortener",
     "description": "Back-end application",
     "version": "1.0.0",
     "repository": {
@@ -22,6 +22,8 @@
         "dev": "concurrently \"npm run server\" \"npm run client\""
     },
     "devDependencies": {
-        "concurrently": "^8.2.2"
+        "concurrently": "^8.2.2",
+        "eslint": "^9.4.0",
+        "prettier": "^3.3.1"
     }
 }

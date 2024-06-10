@@ -1,13 +1,13 @@
 function getBackEndServerUrl() {
-    return process.env.REACT_APP_BACKEND_HOST + ":" + process.env.REACT_APP_BACKEND_PORT;
+    return process.env.REACT_APP_BACKEND_HOST + ':' + process.env.REACT_APP_BACKEND_PORT;
 }
 
 function getShortenerUrl() {
-    return getBackEndServerUrl() + "/shorten";
+    return getBackEndServerUrl() + '/shorten';
 }
 
 function getFullShortenedUrl(id) {
-    return window.location.origin + "/s/" + id;
+    return window.location.origin + '/s/' + id;
 }
 
 function validateURL(url) {
@@ -23,9 +23,4 @@ function validateURL(url) {
     }
 }
 
-export {
-    getBackEndServerUrl,
-    getShortenerUrl,
-    getFullShortenedUrl,
-    validateURL
-};
+export {getBackEndServerUrl, getShortenerUrl, getFullShortenedUrl, validateURL};
