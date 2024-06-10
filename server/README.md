@@ -2,7 +2,7 @@
 
 This project was written with Express.js.
 
-Run the following commands to start the application:
+Configure the `.env` file (use the [`.env.sample`](./.env.sample)) and run the following commands to start the application:
 ```
 npm install --save-dev
 
