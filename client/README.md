@@ -1,6 +1,6 @@
 # Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [React](https://github.com/facebook/create-react-app).
 
 Configure the `.env` file (use the [`.env.sample`](./.env.sample)) and run the following commands to start the application:
 ```
