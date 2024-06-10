@@ -8,6 +8,10 @@ function RedirectComponent() {
     const serverUrl = process.env.REACT_APP_BACKEND_HOST + ":" + process.env.REACT_APP_BACKEND_PORT;
 
     fetch(serverUrl + "/" + id).then((response) => {
+        if (response.status !== 200) {
+            throw new Error();
+        }
+
         response.json().then((body) => {
             window.location.href = body.url;
         })

@@ -1,0 +1,27 @@
+{
+    "name": "URL-Shortener",
+    "description": "Back-end application",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/JeanExtreme002/URL-Shortener.git"
+    },
+    "keywords": [
+        "url",
+        "shortener"
+    ],
+    "author": "Jean Loui Bernard",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/JeanExtreme002/URL-Shortener/issues"
+    },
+    "homepage": "https://github.com/JeanExtreme002/URL-Shortener#readme",
+    "scripts": {
+        "server": "npm run dev --prefix server",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

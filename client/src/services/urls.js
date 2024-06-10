@@ -11,6 +11,10 @@ function getFullShortenedUrl(id) {
 }
 
 function validateURL(url) {
+    if (url.startsWith(window.location.origin)) {
+        return false;
+    }
+
     try {
         new URL(url);
         return true;
