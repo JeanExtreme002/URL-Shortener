@@ -21,6 +21,12 @@ function shortenURL(entryId) {
         shortening = false;
         return;
     }
+
+    if (url.length > 200) {
+        entry.value = "Maximum limit of 200 characters exceeded."
+        shortening = false;
+        return;
+    }
     entry.disabled = true;
 
     // Informs that the application is shortening the URL.

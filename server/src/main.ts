@@ -21,4 +21,4 @@ function main() {
     );
 }
 
-initialize(main, process.argv[2] === 'dev');
+initialize(main, config.devMode);

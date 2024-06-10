@@ -48,19 +48,29 @@ class Shortener {
     }
 
     async insert(url: string): Promise<string> {
-        const reg: URLModel = URLModel.build({url: url});
-        await reg.save();
+        const existingInstance: URLModel | null = await URLModel.findOne({
+            where: {url: url},
+        });
 
-        return this.intToString(reg.id - 1);
+        // Return the ID of the existing row.
+        if (existingInstance) {
+            return this.intToString(existingInstance.id - 1);
+        }
+
+        // Insert a new URL to the database.
+        const instance: URLModel = URLModel.build({url: url});
+        await instance.save();
+
+        return this.intToString(instance.id - 1);
     }
 
     async get(id: string): Promise<string | null> {
         const intId = this.stringToInt(id) + 1;
 
-        const reg: URLModel | null = await URLModel.findOne({
+        const instance: URLModel | null = await URLModel.findOne({
             where: {id: intId},
         });
-        return reg ? reg.url : null;
+        return instance ? instance.url : null;
     }
 }
 

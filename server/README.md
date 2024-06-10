@@ -6,7 +6,7 @@ Run the following commands to start the application:
 ```
 npm install --save-dev
 
-npm start
+npm run dev
 ```
 
 ## Available Scripts
@@ -15,7 +15,12 @@ In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the compiled app.\
+Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
+
+### `npm run dev`
+
+Runs the compile app in the development mode.\
 Open [http://localhost:8080](http://localhost:8080) to view it in your browser.
 
 ### `npm run compile`

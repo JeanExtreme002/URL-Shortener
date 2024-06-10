@@ -18,6 +18,7 @@ interface ServerConfig {
 interface Config {
     database: DatabaseConfig;
     server: ServerConfig;
+    devMode: boolean;
 }
 
 // Load env variables.
@@ -37,6 +38,7 @@ const server = {
 const config: Config = {
     database: database,
     server: server,
+    devMode: process.argv[2] === 'dev',
 };
 
 export default config;

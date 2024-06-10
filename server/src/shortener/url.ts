@@ -16,8 +16,10 @@ URLModel.init(
             primaryKey: true,
         },
         url: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(200),
             allowNull: false,
+            unique: true,
+            validate: {len: [3, 200]},
         },
         updatedAt: {
             type: DataTypes.DATE,

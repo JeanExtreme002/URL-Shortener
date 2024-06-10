@@ -10,6 +10,7 @@ const session: Sequelize = new Sequelize({
     port: config.database.port,
     username: config.database.user,
     password: config.database.password,
+    logging: config.devMode,
 });
 
 /**
